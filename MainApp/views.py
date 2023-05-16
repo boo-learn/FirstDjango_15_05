@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse
+from django.http import HttpResponseNotFound
 
 author_info = {
     "name": "Евгений",
@@ -36,5 +37,15 @@ def item_page(request, id):
             text = f"""
             <h2>{item['name']}</h2>
             Количество: <b>{item['quantity']}</b>
+            <a href='/items/'>Назад</a>
             """
             return HttpResponse(text)
+    return HttpResponseNotFound(f"Товар с id {id} не найден")
+
+
+def items_list(request):
+    text = "<h2>Список товаров</h2><ol>"
+    for item in items:
+        text += f"<a href='/item/{item['id']}/'><li>{item['name']}</li></a>"
+    text += "</ol>"
+    return HttpResponse(text)
