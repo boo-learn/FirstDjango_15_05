@@ -19,16 +19,14 @@ items = [
 #
 
 def home(request):
-    return HttpResponse("<h1>Приветствую</h1>")
+    return render(request, "index.html")
 
 
 def about(request):
-    text = f"""
-    Имя: <b>{author_info['name']}</b><br>
-    Фамилий: <b>{author_info['surname']}</b><br>
-    email: <b>{author_info['email']}<b/><br>
-    """
-    return HttpResponse(text)
+    context = {
+        "author": author_info
+    }
+    return render(request, "about.html", context)
 
 
 def item_page(request, id):
