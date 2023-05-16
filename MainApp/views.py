@@ -32,18 +32,15 @@ def about(request):
 def item_page(request, id):
     for item in items:
         if item['id'] == id:
-            text = f"""
-            <h2>{item['name']}</h2>
-            Количество: <b>{item['quantity']}</b>
-            <a href='/items/'>Назад</a>
-            """
-            return HttpResponse(text)
+            context = {
+                "item": item
+            }
+            return render(request, "item-page.html", context)
     return HttpResponseNotFound(f"Товар с id {id} не найден")
 
 
 def items_list(request):
-    text = "<h2>Список товаров</h2><ol>"
-    for item in items:
-        text += f"<a href='/item/{item['id']}/'><li>{item['name']}</li></a>"
-    text += "</ol>"
-    return HttpResponse(text)
+    context = {
+        "items": items
+    }
+    return render(request, "items-list.html", context)
