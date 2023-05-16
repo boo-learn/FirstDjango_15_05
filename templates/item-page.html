@@ -5,8 +5,17 @@
     <title>Title</title>
 </head>
 <body>
+<menu>
+    / <a href="/"> Home</a> / <a href="/items/"> Items</a> / <a href="/about/">About</a> /
+</menu>
 <h2>{{ item.name }}</h2>
-Количество: {{ item.quantity }}<br>
+Количество:
+{% if item.quantity == 0 %}
+    Товара нет на складе
+{% else %}
+    {{ item.quantity }}
+{% endif %}
+<br>
 
 <a href="/items/">Назад</a>
 </body>
