@@ -6,7 +6,7 @@
 </head>
 <body>
 <menu>
-    / <a href="/"> Home</a> / <a href="/items/"> Items</a> / <a href="/about/">About</a> /
+    / <a href="{% url 'home' %}"> Home</a> / <a href="/items/"> Items</a> / <a href="/about/">About</a> /
 </menu>
 Имя: <b>{{ author.name }}</b><br>
 Фамилий: <b>{{ author.surname }}</b><br>
