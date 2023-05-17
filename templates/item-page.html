@@ -10,10 +10,10 @@
 </menu>
 <h2>{{ item.name }}</h2>
 Количество:
-{% if item.quantity == 0 %}
+{% if item.count == 0 %}
     Товара нет на складе
 {% else %}
-    {{ item.quantity }}
+    {{ item.count }}
 {% endif %}
 <br>
 

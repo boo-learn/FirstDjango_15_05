@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse
 from django.http import HttpResponseNotFound
 from MainApp.models import Item
+from django.core.exceptions import ObjectDoesNotExist
 
 author_info = {
     "name": "Евгений",
@@ -21,13 +22,14 @@ def about(request):
 
 
 def item_page(request, id):
-    for item in items:
-        if item['id'] == id:
-            context = {
-                "item": item
-            }
-            return render(request, "item-page.html", context)
-    return HttpResponseNotFound(f"Товар с id {id} не найден")
+    try:
+        item = Item.objects.get(id=id)
+    except ObjectDoesNotExist:
+        return HttpResponseNotFound(f"Товар с id {id} не найден")
+    context = {
+        "item": item
+    }
+    return render(request, "item-page.html", context)
 
 
 def items_list(request):
