@@ -1,29 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <style>
+{% extends 'base.html' %}
 
-    </style>
-</head>
-<body>
-<menu>
-    / <a href="/"> Home</a> / <a href="/items/"> Items</a> / <a href="/about/">About</a> /
-</menu>
-<h2>{{ item.name }}</h2>
-Количество:
-{% if item.count == 0 %}
-    Товара нет на складе
-{% else %}
-    {{ item.count }}
-{% endif %}
-<br>
+{% block content %}
+    <h2>{{ item.name }}</h2>
+    Количество:
 
-<p>
-    {{ item.description }}
-</p>
+    {{ item.count|default:"Товара нет на складе" }}<br>
 
-<a href="/items/">Назад</a>
-</body>
-</html>
+    <p>
+        {{ item.description }}
+    </p>
+
+    <a href="/items/">Назад</a>
+{% endblock %}
+
