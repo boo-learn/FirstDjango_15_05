@@ -51,6 +51,7 @@ def item_add(request):
 def item_create(request):
     if request.method == "POST":
         form_data = request.POST
+        colors_id = form_data.getlist("colors")
         item = Item(
             name=form_data['name'],
             brand=form_data['brand'],
