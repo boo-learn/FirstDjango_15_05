@@ -24,10 +24,12 @@ def about(request):
 def item_page(request, id):
     try:
         item = Item.objects.get(id=id)
+        colors = item.colors.all()
     except ObjectDoesNotExist:
         return HttpResponseNotFound(f"Товар с id {id} не найден")
     context = {
-        "item": item
+        "item": item,
+        "colors": colors
     }
     return render(request, "item-page.html", context)
 
